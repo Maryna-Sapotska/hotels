@@ -43,9 +43,9 @@ spring:
 ```
 2. Добавить соответствующий драйвер в pom.xml:
    <dependency>
-       <groupId>org.postgresql</groupId>
-       <artifactId>postgresql</artifactId>
-       <version>42.6.0</version>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>42.6.0</version>
    </dependency>
 3. Liquibase создаст таблицы автоматически при старте приложения.
 
