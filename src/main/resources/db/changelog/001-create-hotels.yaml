@@ -1,0 +1,234 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 1
+      author: dev
+      changes:
+
+        - createTable:
+            tableName: hotels
+            columns:
+
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+
+              - column:
+                  name: description
+                  type: CLOB
+
+              - column:
+                  name: brand
+                  type: VARCHAR(255)
+
+              # Address (Embedded)
+              - column:
+                  name: house_number
+                  type: INT
+
+              - column:
+                  name: street
+                  type: VARCHAR(255)
+
+              - column:
+                  name: city
+                  type: VARCHAR(255)
+
+              - column:
+                  name: country
+                  type: VARCHAR(255)
+
+              - column:
+                  name: post_code
+                  type: VARCHAR(50)
+
+              # Contacts (Embedded)
+              - column:
+                  name: phone
+                  type: VARCHAR(100)
+
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+
+              # ArrivalTime (Embedded)
+              - column:
+                  name: check_in
+                  type: VARCHAR(10)
+
+              - column:
+                  name: check_out
+                  type: VARCHAR(10)
+
+
+  - changeSet:
+      id: 2
+      author: dev
+      changes:
+
+        - createTable:
+            tableName: hotel_amenities
+            columns:
+
+              - column:
+                  name: hotel_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: amenity
+                  type: VARCHAR(255)
+
+        - addForeignKeyConstraint:
+            baseTableName: hotel_amenities
+            baseColumnNames: hotel_id
+            referencedTableName: hotels
+            referencedColumnNames: id
+            constraintName: fk_hotel_amenities_hotel
+
+  - changeSet:
+      id: 3
+      author: dev
+      changes:
+        - insert:
+            tableName: hotels
+            columns:
+              - column: { name: name, value: "DoubleTree by Hilton Minsk" }
+              - column: { name: description, value: "Luxury hotel in Minsk city center" }
+              - column: { name: brand, value: "Hilton" }
+              - column: { name: house_number, valueNumeric: 9 }
+              - column: { name: street, value: "Pobediteley Avenue" }
+              - column: { name: city, value: "Minsk" }
+              - column: { name: country, value: "Belarus" }
+              - column: { name: post_code, value: "220004" }
+              - column: { name: phone, value: "+375173098000" }
+              - column: { name: email, value: "doubletree@hilton.com" }
+              - column: { name: check_in, value: "14:00" }
+              - column: { name: check_out, value: "12:00" }
+
+  - changeSet:
+      id: 4
+      author: dev
+      changes:
+        - insert:
+            tableName: hotels
+            columns:
+              - column: { name: name, value: "Hilton Garden Inn Moscow" }
+              - column: { name: description, value: "Modern business hotel" }
+              - column: { name: brand, value: "Hilton" }
+              - column: { name: house_number, valueNumeric: 5 }
+              - column: { name: street, value: "Tverskaya Street" }
+              - column: { name: city, value: "Moscow" }
+              - column: { name: country, value: "Russia" }
+              - column: { name: post_code, value: "125009" }
+              - column: { name: phone, value: "+74951234567" }
+              - column: { name: email, value: "moscow@hilton.com" }
+              - column: { name: check_in, value: "15:00" }
+              - column: { name: check_out, value: "12:00" }
+
+  - changeSet:
+      id: 5
+      author: dev
+      changes:
+        - insert:
+            tableName: hotels
+            columns:
+              - column: { name: name, value: "Marriott Warsaw Center" }
+              - column: { name: description, value: "Premium hotel in Warsaw" }
+              - column: { name: brand, value: "Marriott" }
+              - column: { name: house_number, valueNumeric: 1 }
+              - column: { name: street, value: "Aleje Jerozolimskie" }
+              - column: { name: city, value: "Warsaw" }
+              - column: { name: country, value: "Poland" }
+              - column: { name: post_code, value: "00-001" }
+              - column: { name: phone, value: "+48221234567" }
+              - column: { name: email, value: "warsaw@marriott.com" }
+              - column: { name: check_in, value: "14:00" }
+              - column: { name: check_out, value: "11:00" }
+
+  - changeSet:
+      id: 6
+      author: dev
+      changes:
+        - insert:
+            tableName: hotels
+            columns:
+              - column: { name: name, value: "Radisson Blu Vilnius" }
+              - column: { name: description, value: "Stylish hotel in Vilnius" }
+              - column: { name: brand, value: "Radisson" }
+              - column: { name: house_number, valueNumeric: 12 }
+              - column: { name: street, value: "Konstitucijos Avenue" }
+              - column: { name: city, value: "Vilnius" }
+              - column: { name: country, value: "Lithuania" }
+              - column: { name: post_code, value: "09308" }
+              - column: { name: phone, value: "+37051234567" }
+              - column: { name: email, value: "vilnius@radisson.com" }
+              - column: { name: check_in, value: "14:00" }
+              - column: { name: check_out, value: "12:00" }
+
+  - changeSet:
+      id: 7
+      author: dev
+      changes:
+        - insert:
+            tableName: hotels
+            columns:
+              - column: { name: name, value: "Hyatt Regency Kyiv" }
+              - column: { name: description, value: "Luxury hotel in Kyiv center" }
+              - column: { name: brand, value: "Hyatt" }
+              - column: { name: house_number, valueNumeric: 8 }
+              - column: { name: street, value: "Taras Shevchenko Blvd" }
+              - column: { name: city, value: "Rome" }
+              - column: { name: country, value: "Italy" }
+              - column: { name: post_code, value: "01004" }
+              - column: { name: phone, value: "+380441234567" }
+              - column: { name: email, value: "rome@hyatt.com" }
+              - column: { name: check_in, value: "15:00" }
+              - column: { name: check_out, value: "12:00" }
+
+  - changeSet:
+      id: 8
+      author: dev
+      changes:
+        - insert:
+            tableName: hotel_amenities
+            columns:
+              - column: { name: hotel_id, valueNumeric: 1 }
+              - column: { name: amenity, value: "Free WiFi" }
+        - insert:
+            tableName: hotel_amenities
+            columns:
+              - column: { name: hotel_id, valueNumeric: 1 }
+              - column: { name: amenity, value: "Fitness center" }
+
+        - insert:
+            tableName: hotel_amenities
+            columns:
+              - column: { name: hotel_id, valueNumeric: 2 }
+              - column: { name: amenity, value: "Free WiFi" }
+
+        - insert:
+            tableName: hotel_amenities
+            columns:
+              - column: { name: hotel_id, valueNumeric: 3 }
+              - column: { name: amenity, value: "Business center" }
+
+        - insert:
+            tableName: hotel_amenities
+            columns:
+              - column: { name: hotel_id, valueNumeric: 4 }
+              - column: { name: amenity, value: "Free parking" }
+
+        - insert:
+            tableName: hotel_amenities
+            columns:
+              - column: { name: hotel_id, valueNumeric: 5 }
+              - column: { name: amenity, value: "Spa" }
